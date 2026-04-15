@@ -8,7 +8,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-gray-100 px-6 py-3 shadow-sm">
+    <nav className="bg-white-100 px-6 py-3 shadow-sm">
       
       <div className="flex justify-between items-center">
         
