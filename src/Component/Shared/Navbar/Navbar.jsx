@@ -3,12 +3,14 @@ import { FaHome } from "react-icons/fa";
 import { MdTimeline } from "react-icons/md";
 import { IoStatsChart } from "react-icons/io5";
 import { HiMenu, HiX } from "react-icons/hi";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="bg-white-100 px-6 py-3 shadow-sm">
+      
       
       <div className="flex justify-between items-center">
         
@@ -20,8 +22,17 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-4">
           
-          <button className="flex items-center gap-2 bg-green-600 text-white px-4 py-1.5 rounded-md text-sm font-medium">
-            <FaHome /> Home
+          <button className="flex items-center gap-2 px-4 py-1.5 rounded-md text-sm font-medium">
+            <NavLink
+        to="/"
+        className={({ isActive }) =>
+          isActive
+            ? " bg-green-600 text-white px-4 py-1.5 rounded-md text-sm font-medium flex items-center gap-2"
+            : "text-gray-600  px-4 py-1.5 rounded-md text-sm font-medium flex items-center gap-2"
+        }
+      >
+        <FaHome />Home
+        </NavLink>
           </button>
 
           <button className="flex items-center gap-2 text-gray-600 hover:text-black text-sm">

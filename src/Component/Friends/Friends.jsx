@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Friends = () => {
   const [friends, setFriends] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("/friends.json")
@@ -10,6 +12,7 @@ const Friends = () => {
   }, []);
 
   return (
+    
     <div className="bg-gray-100 min-h-screen py-10 px-30">
       <h2 className="text-2xl font-bold mb-8">
         Your Friends 
@@ -19,6 +22,7 @@ const Friends = () => {
         {friends.map((friend) => (
           <div
             key={friend.id}
+            onClick={() => navigate(`/friend/${friend.id}`)}
             className="bg-white rounded-xl shadow p-5"
           >
             <img
