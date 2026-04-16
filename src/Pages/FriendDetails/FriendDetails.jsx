@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+// ✅ Toastify
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const FriendDetails = () => {
   const { id } = useParams();
   const [friend, setFriend] = useState(null);
+
+  // ✅ Track active action
+  const [activeAction, setActiveAction] = useState(null);
 
   useEffect(() => {
     fetch("/friends.json")
@@ -14,29 +21,53 @@ const FriendDetails = () => {
       });
   }, [id]);
 
-  if (!friend) return <p className="text-center mt-10">Loading...</p>;
+  // ✅ Handle button click
+  const handleAction = (type) => {
+    if (activeAction === type) {
+      toast.warn(`Already ${type} in progress!`);
+      return;
+    }
+
+    setActiveAction(type);
+
+    if (type === "call") toast.success("📞 Calling...");
+    if (type === "text") toast.success("💬 Sending text...");
+    if (type === "video") toast.success("🎥 Starting video...");
+  };
+
+  if (!friend)
+    return <p className="text-center mt-10">Loading...</p>;
 
   return (
-    <div className="bg-gray-100 min-h-screen p-6">
+    <div className="bg-gray-100 min-h-screen p-6 px-50">
       <div className="grid md:grid-cols-3 gap-6">
 
         {/* LEFT CARD */}
-        <div className="bg-white p-6 rounded-xl shadow text-center">
-          <img
-            src={friend.picture}
-            className="w-20 h-20 rounded-full mx-auto mb-3"
-          />
-          <h2 className="font-semibold text-lg">{friend.name}</h2>
-          <p className="text-gray-400 text-sm">{friend.email}</p>
+        <div className="bg-white p-5 rounded-xl shadow text-center">
+          <div>
+            <img
+              src={friend.picture}
+              alt={friend.name}
+              className="w-20 h-20 rounded-full mx-auto mb-3"
+            />
+            <h2 className="font-semibold text-lg">{friend.name}</h2>
+            <p className="text-gray-400 text-sm">{friend.email}</p>
 
-          <p className="mt-4 text-sm italic text-gray-500">
-            "{friend.bio}"
-          </p>
+            <p className="mt-4 text-sm italic text-gray-500">
+              "{friend.bio}"
+            </p>
+          </div>
 
           <div className="mt-4 space-y-2 text-sm">
-            <p>🔔 Snooze 2 Weeks</p>
-            <p>✔ Active</p>
-            <p className="text-red-500">🗑 Delete</p>
+            <button className="bg-gray-100 px-4 py-2 w-full rounded">
+              🔔 Snooze 2 Weeks
+            </button>
+            <button className="bg-gray-100 flex px-10 ml-20 py-2 rounded">
+              ✔ Archive
+            </button>
+            <button className="bg-gray-100 px-4 py-2 rounded text-red-500">
+              🗑 Delete
+            </button>
           </div>
         </div>
 
@@ -76,15 +107,48 @@ const FriendDetails = () => {
           {/* QUICK ACTION */}
           <div className="bg-white p-4 rounded-xl shadow">
             <h3 className="font-semibold mb-3">Quick Check-in</h3>
+
             <div className="flex gap-4">
-              <button className="bg-gray-100 px-4 py-2 rounded">📞 Call</button>
-              <button className="bg-gray-100 px-4 py-2 rounded">💬 Text</button>
-              <button className="bg-gray-100 px-4 py-2 rounded">🎥 Video</button>
+              <button
+                onClick={() => handleAction("call")}
+                className={`px-4 py-2 rounded ${
+                  activeAction === "call"
+                    ? "bg-blue-500 text-white"
+                    : "bg-gray-100"
+                }`}
+              >
+                📞 Call
+              </button>
+
+              <button
+                onClick={() => handleAction("text")}
+                className={`px-4 py-2 rounded ${
+                  activeAction === "text"
+                    ? "bg-green-500 text-white"
+                    : "bg-gray-100"
+                }`}
+              >
+                💬 Text
+              </button>
+
+              <button
+                onClick={() => handleAction("video")}
+                className={`px-4 py-2 rounded ${
+                  activeAction === "video"
+                    ? "bg-purple-500 text-white"
+                    : "bg-gray-100"
+                }`}
+              >
+                🎥 Video
+              </button>
             </div>
           </div>
 
         </div>
       </div>
+
+      {/* ✅ Toast Container */}
+      <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 };
