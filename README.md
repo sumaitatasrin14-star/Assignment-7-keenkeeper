@@ -1,16 +1,104 @@
-# React + Vite
+# 🌿 KeenKeeper
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A smarter way to nurture your relationships.
 
-Currently, two official plugins are available:
+KeenKeeper is a beautifully designed friendship management app that helps you stay connected with the people who matter most. Track interactions, build meaningful habits, and never lose touch again.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Live Experience
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🌐 Live-Site link:
+💻 Git-hub link:
+---
 
-## Expanding the ESLint configuration
+## 🧠 What Makes It Different?
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Instead of just storing contacts, KeenKeeper focuses on **relationship consistency**.
+
+* ⏰ Reminds you *when* you last connected
+* 📊 Shows your communication patterns visually
+* 🧹 Keeps your timeline clean automatically
+* 🎯 Encourages intentional interactions
+
+---
+
+## ⚡ Core Features
+
+✨ Smart friend tracking system
+📅 Interaction timeline with auto-expiry (24h)
+🔍 Real-time search & filtering
+📞 Quick actions: Call / Text / Video
+📊 Data visualization using charts
+💾 Persistent storage with localStorage
+📱 Fully responsive UI
+
+---
+
+## 🖥️ App Sections
+
+### 🏠 Dashboard
+
+Your central hub — overview of all friends and quick stats.
+
+### 👤 Friend Profile
+
+Detailed view with goals, tags, and quick interaction buttons.
+
+### 🕒 Timeline
+
+A dynamic feed of your recent interactions.
+
+### 📊 Insights
+
+Charts that reveal your communication habits.
+
+---
+
+## 🛠 Tech Stack
+
+**Frontend:** React + Vite
+**Styling:** Tailwind CSS + DaisyUI
+**Data Handling:** Context API + localStorage
+**Charts:** Recharts
+**UX Enhancements:** React Icons, Toastify
+
+---
+
+## ⚙️ How It Flows
+
+```text
+Load Friends → View Profiles → Add Interaction → Save → Analyze → Auto Clean
+```
+
+---
+
+## 📂 Project Snapshot
+
+```
+src/
+ ├── Components/
+ ├── Pages/
+ ├── Context/
+ ├── Layout/
+ ├── Routes/
+ └── utils/
+```
+
+---
+
+## 🔮 Future Vision
+
+* 🔐 User authentication
+* ☁️ Cloud database integration
+* 🌙 Dark mode
+* 🤖 Smart reminders
+* 📈 Advanced analytics
+
+---
+
+## 👩‍💻 Creator
+
+**Sumaita Tasrin**
+
+
