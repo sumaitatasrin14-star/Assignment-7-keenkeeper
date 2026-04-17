@@ -6,6 +6,7 @@ import './index.css';
 import MainLayout from './Layout/MainLayout';
 import FriendDetails from './Pages/FriendDetails/FriendDetails';
 import Home from "./Pages/Home/Home.jsx";
+import Timeline from './Component/Timeline/Timeline.jsx';
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "friend/:id", element: <FriendDetails /> },
+      { path: "/timeline", element: <Timeline /> },
     ],
   }
 ]);

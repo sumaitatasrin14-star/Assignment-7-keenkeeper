@@ -8,65 +8,62 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // ✅ Active style
+  const linkClass = ({ isActive }) =>
+    isActive
+      ? "bg-green-600 text-white px-4 py-2 rounded-md text-sm flex items-center gap-2"
+      : "text-gray-600 px-4 py-2 rounded-md text-sm flex items-center gap-2 hover:bg-gray-100";
+
   return (
-    <nav className="bg-white-100 px-6 py-3 shadow-sm">
-      
-      
+    <nav className="px-6 py-3 shadow-sm bg-white">
+
       <div className="flex justify-between items-center">
-        
+
         {/* Logo */}
         <div className="text-lg font-semibold text-gray-700">
-          <span className="text-xl font-bold">Keen</span><span className="text-xl text-green-800">Keeper</span>
+          <span className="text-xl font-bold">Keen</span>
+          <span className="text-xl text-green-700">Keeper</span>
         </div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-4">
-          
-          <button className="flex items-center gap-2 px-4 py-1.5 rounded-md text-sm font-medium">
-            <NavLink
-        to="/"
-        className={({ isActive }) =>
-          isActive
-            ? " bg-green-600 text-white px-4 py-1.5 rounded-md text-sm font-medium flex items-center gap-2"
-            : "text-gray-600  px-4 py-1.5 rounded-md text-sm font-medium flex items-center gap-2"
-        }
-      >
-        <FaHome />Home
-        </NavLink>
-          </button>
 
-          <button className="flex items-center gap-2 text-gray-600 hover:text-black text-sm">
+          <NavLink to="/" className={linkClass}>
+            <FaHome /> Home
+          </NavLink>
+
+          <NavLink to="/timeline" className={linkClass}>
             <MdTimeline /> Timeline
-          </button>
+          </NavLink>
 
-          <button className="flex items-center gap-2 text-gray-600 hover:text-black text-sm">
+          <NavLink to="/stats" className={linkClass}>
             <IoStatsChart /> Stats
-          </button>
+          </NavLink>
+
         </div>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)}>
-            {isOpen ? <HiX size={22} /> : <HiMenu size={22} />}
-          </button>
-        </div>
+        {/* Mobile Button */}
+        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden">
+          {isOpen ? <HiX size={22} /> : <HiMenu size={22} />}
+        </button>
       </div>
 
-      {/* Mobile Dropdown */}
+      {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden mt-4 flex flex-col gap-3">
-          
-          <button className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium">
+
+          <NavLink to="/" className={linkClass}>
             <FaHome /> Home
-          </button>
+          </NavLink>
 
-          <button className="flex items-center gap-2 text-gray-600 hover:text-black text-sm">
+          <NavLink to="/timeline" className={linkClass}>
             <MdTimeline /> Timeline
-          </button>
+          </NavLink>
 
-          <button className="flex items-center gap-2 text-gray-600 hover:text-black text-sm">
+          <NavLink to="/stats" className={linkClass}>
             <IoStatsChart /> Stats
-          </button>
+          </NavLink>
+
         </div>
       )}
     </nav>

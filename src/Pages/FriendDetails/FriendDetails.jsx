@@ -21,7 +21,7 @@ const FriendDetails = () => {
       });
   }, [id]);
 
-  // ✅ Handle button click
+  // ✅ UPDATED HANDLE ACTION (WITH HISTORY SAVE)
   const handleAction = (type) => {
     if (activeAction === type) {
       toast.warn(`Already ${type} in progress!`);
@@ -30,9 +30,24 @@ const FriendDetails = () => {
 
     setActiveAction(type);
 
-    if (type === "call") toast.success("📞 Calling...");
-    if (type === "text") toast.success("💬 Sending text...");
-    if (type === "video") toast.success("🎥 Starting video...");
+    // 🔥 Save to history
+    const newItem = {
+      type,
+      name: friend.name,
+      time: new Date().toLocaleString(),
+    };
+
+    const oldHistory =
+      JSON.parse(localStorage.getItem("history")) || [];
+
+    const updatedHistory = [...oldHistory, newItem];
+
+    localStorage.setItem("history", JSON.stringify(updatedHistory));
+
+    // ✅ Toast message
+    if (type === "call") toast.success(`📞 Calling ${friend.name}...`);
+    if (type === "text") toast.success(`💬 Texting ${friend.name}...`);
+    if (type === "video") toast.success(`🎥 Video call with ${friend.name}...`);
   };
 
   if (!friend)
@@ -44,19 +59,17 @@ const FriendDetails = () => {
 
         {/* LEFT CARD */}
         <div className="bg-white p-5 rounded-xl shadow text-center">
-          <div>
-            <img
-              src={friend.picture}
-              alt={friend.name}
-              className="w-20 h-20 rounded-full mx-auto mb-3"
-            />
-            <h2 className="font-semibold text-lg">{friend.name}</h2>
-            <p className="text-gray-400 text-sm">{friend.email}</p>
+          <img
+            src={friend.picture}
+            alt={friend.name}
+            className="w-20 h-20 rounded-full mx-auto mb-3"
+          />
+          <h2 className="font-semibold text-lg">{friend.name}</h2>
+          <p className="text-gray-400 text-sm">{friend.email}</p>
 
-            <p className="mt-4 text-sm italic text-gray-500">
-              "{friend.bio}"
-            </p>
-          </div>
+          <p className="mt-4 text-sm italic text-gray-500">
+            "{friend.bio}"
+          </p>
 
           <div className="mt-4 space-y-2 text-sm">
             <button className="bg-gray-100 px-4 py-2 w-full rounded">
@@ -147,7 +160,7 @@ const FriendDetails = () => {
         </div>
       </div>
 
-      {/* ✅ Toast Container */}
+      {/* ✅ Toast */}
       <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
