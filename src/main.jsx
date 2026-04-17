@@ -8,6 +8,7 @@ import FriendDetails from './Pages/FriendDetails/FriendDetails';
 import Home from "./Pages/Home/Home.jsx";
 import Timeline from './Component/Timeline/Timeline.jsx';
 import Stats from './Component/Stats/Stats.jsx';
+import ErrorPage from './Pages/ErrorPage/ErrorPage.jsx';
 
 
 const router = createBrowserRouter([
@@ -20,6 +21,7 @@ const router = createBrowserRouter([
       { path: "/timeline", element: <Timeline /> },
       {path: "/stats", element: <Stats />},
     ],
+    errorElement:<ErrorPage></ErrorPage>
   }
 ]);
 

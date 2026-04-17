@@ -8,8 +8,8 @@ KeenKeeper is a beautifully designed friendship management app that helps you st
 
 ## 🚀 Live Experience
 
-🌐 Live-Site link:
-💻 Git-hub link:
+🌐 Live-Site link: 
+💻 Git-hub link: https://github.com/sumaitatasrin14-star/Assignment-7-keenkeeper
 ---
 
 ## 🧠 What Makes It Different?
